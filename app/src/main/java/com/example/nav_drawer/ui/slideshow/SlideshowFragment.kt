@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.nav_drawer.R
 import com.example.nav_drawer.databinding.FragmentSlideshowBinding
 
 class SlideshowFragment : Fragment() {
-
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private lateinit var viewModel: SlideshowViewModel
     private var _binding: FragmentSlideshowBinding? = null
 
     // This property is only valid between onCreateView and
@@ -24,18 +21,31 @@ class SlideshowFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+    ): View {
+        viewModel = ViewModelProvider(this)[SlideshowViewModel::class.java]
 
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        with (binding) {
+            btnIncrement.setOnClickListener { viewModel.increment() }
+            btnColor.setOnClickListener { viewModel.setColor() }
+            btnVisible.setOnClickListener { viewModel.switchVisible() }
+        }
+
+        viewModel.state.observe(viewLifecycleOwner, Observer {
+            renderState(it)
         })
+
         return root
+    }
+
+    private fun renderState(state: SlideshowViewModel.State) {
+        with (binding.tvValue) {
+            text = state.value.toString()
+            setTextColor(state.color)
+            visibility = if (state.visible) View.VISIBLE else View.INVISIBLE
+        }
     }
 
     override fun onDestroyView() {
