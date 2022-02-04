@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.nav_drawer.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_photo"
+        android:name="com.example.nav_drawer.ui.photo.PhotoFragment"
+        android:label="@string/menu_photo"
+        tools:layout="@layout/fragment_photo" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.nav_drawer.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_state"
+        android:name="com.example.nav_drawer.ui.state.StateFragment"
+        android:label="@string/menu_state"
+        tools:layout="@layout/fragment_state" />
+
+    <fragment
+        android:id="@+id/nav_list"
+        android:name="com.example.nav_drawer.ui.list.ListFragment"
+        android:label="@string/menu_list"
+        tools:layout="@layout/fragment_list" />
 </navigation>

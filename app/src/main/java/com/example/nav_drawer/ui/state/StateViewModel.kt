@@ -1,4 +1,4 @@
-package com.example.nav_drawer.ui.slideshow
+package com.example.nav_drawer.ui.state
 
 import android.graphics.Color
 import androidx.lifecycle.LiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlin.random.Random
 
-class SlideshowViewModel : ViewModel() {
+class StateViewModel : ViewModel() {
     private val _state = MutableLiveData<State>().apply {
         value = State(
             value = 0,
