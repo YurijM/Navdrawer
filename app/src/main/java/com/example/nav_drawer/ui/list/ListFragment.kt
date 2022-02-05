@@ -1,16 +1,19 @@
 package com.example.nav_drawer.ui.list
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SimpleAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.nav_drawer.R
 import com.example.nav_drawer.databinding.FragmentListBinding
+import java.util.*
 
 class ListFragment : Fragment() {
     lateinit var viewModel: ListViewModel
@@ -27,17 +30,61 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentListBinding.inflate(inflater, container, false)
 
-        binding.rgAdapters.setOnCheckedChangeListener { radioGroup, i ->
-            binding.listView.onItemClickListener = null
+        binding.fabAdd.setOnClickListener {  }
+
+        binding.rgAdapters.setOnCheckedChangeListener { radioGroup, _ ->
+            binding.fabAdd.visibility = View.INVISIBLE
 
             when (radioGroup.checkedRadioButtonId) {
                 R.id.simpleAdapter -> setupListViewSimple()
+                R.id.arrayAdapter -> setupListViewArray()
             }
         }
 
         setupListViewSimple()
 
         return binding.root
+    }
+
+    private fun setupListViewArray() {
+        binding.fabAdd.visibility = View.VISIBLE
+
+        val data: MutableList<User> = mutableListOf(
+            User(id = UUID.randomUUID().toString(), name = "Владимир"),
+            User(id = UUID.randomUUID().toString(), name = "Алексей"),
+            User(id = UUID.randomUUID().toString(), name = "Константин")
+        )
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            android.R.id.text1,
+            data
+        )
+
+        binding.listView.adapter = adapter
+
+        binding.listView.setOnItemClickListener { adapterView, view, i, l ->
+            adapter.getItem(i)?.let {
+                deleteUser(it, adapter)
+            }
+        }
+    }
+
+    private fun deleteUser(user: ListFragment.User, adapter: ArrayAdapter<User>) {
+        val listener = DialogInterface.OnClickListener { _, i ->
+            if (i == DialogInterface.BUTTON_POSITIVE) {
+                adapter.remove(user)
+            }
+        }
+
+        val dialog: AlertDialog = AlertDialog.Builder(requireContext())
+            .setTitle("Удаление пользователя")
+            .setMessage("Вы действительно хотите удалить пользователя ${user.name}")
+            .setPositiveButton("Удалить", listener)
+            .setNegativeButton("Отмена", listener)
+            .create()
+        dialog.show()
     }
 
     private fun setupListViewSimple() {
@@ -89,6 +136,15 @@ class ListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    class User(
+        val id: String,
+        val name: String
+    ) {
+        override fun toString(): String {
+            return "$name - (идентификатор $id)"
+        }
     }
 
     companion object {
