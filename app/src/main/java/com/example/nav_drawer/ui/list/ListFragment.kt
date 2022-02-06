@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.nav_drawer.R
+import com.example.nav_drawer.databinding.DialogAddUserBinding
 import com.example.nav_drawer.databinding.FragmentListBinding
 import java.util.*
 
@@ -30,8 +31,6 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentListBinding.inflate(inflater, container, false)
 
-        binding.fabAdd.setOnClickListener {  }
-
         binding.rgAdapters.setOnCheckedChangeListener { radioGroup, _ ->
             binding.fabAdd.visibility = View.INVISIBLE
 
@@ -44,6 +43,30 @@ class ListFragment : Fragment() {
         setupListViewSimple()
 
         return binding.root
+    }
+
+    private fun addUser(adapter: ArrayAdapter<User>) {
+        val dialogAddUser = DialogAddUserBinding.inflate(layoutInflater)
+        val dialog: AlertDialog = AlertDialog.Builder(requireContext())
+            .setTitle("Добавить пользователя")
+            .setView(dialogAddUser.root)
+            .setPositiveButton("Добавить") {_, _ ->
+                val name = dialogAddUser.inpUserName.text.toString()
+                if (name.isNotBlank()) {
+                    createUser(name, adapter)
+                }
+            }
+            .create()
+        dialog.show()
+    }
+
+    private fun createUser(name: String, adapter: ArrayAdapter<User>) {
+        val user = User(
+            id = UUID.randomUUID().toString(),
+            name = name
+        )
+
+        adapter.add(user)
     }
 
     private fun setupListViewArray() {
@@ -61,6 +84,8 @@ class ListFragment : Fragment() {
             android.R.id.text1,
             data
         )
+
+        binding.fabAdd.setOnClickListener { addUser(adapter) }
 
         binding.listView.adapter = adapter
 
