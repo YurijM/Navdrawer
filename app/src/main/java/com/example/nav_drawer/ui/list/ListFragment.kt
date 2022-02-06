@@ -89,7 +89,7 @@ class ListFragment : Fragment() {
 
         binding.listView.adapter = adapter
 
-        binding.listView.setOnItemClickListener { adapterView, view, i, l ->
+        binding.listView.setOnItemClickListener { _, _, i, _ ->
             adapter.getItem(i)?.let {
                 deleteUser(it, adapter)
             }
