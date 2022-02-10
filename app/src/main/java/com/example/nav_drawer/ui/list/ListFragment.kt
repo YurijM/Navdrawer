@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SimpleAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.nav_drawer.R
 import com.example.nav_drawer.databinding.DialogAddUserBinding
 import com.example.nav_drawer.databinding.FragmentListBinding
@@ -37,6 +37,7 @@ class ListFragment : Fragment() {
             when (radioGroup.checkedRadioButtonId) {
                 R.id.simpleAdapter -> setupListViewSimple()
                 R.id.arrayAdapter -> setupListViewArray()
+                R.id.baseAdapter -> findNavController().navigate(R.id.action_nav_list_to_nav_base_list)
             }
         }
 

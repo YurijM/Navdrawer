@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         android:checkedButton="@id/simpleAdapter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Array Adapter" />
+
+        <RadioButton
+            android:id="@+id/baseAdapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Base Adapter" />
 
     </RadioGroup>
 
