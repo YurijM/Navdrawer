@@ -17,7 +17,7 @@ class ListBaseAdapter(
         return users.size
     }
 
-    override fun getItem(p0: Int): Any {
+    override fun getItem(p0: Int): User {
         return users[p0]
     }
 
@@ -33,7 +33,18 @@ class ListBaseAdapter(
             createBinding(parent?.context)
         }
 
+        val user: User = getItem(position)
+
+        binding.tvName.text = user.name
+        binding.imgDelete.tag = user
+        binding.imgDelete.visibility = if (user.isCustom) View.VISIBLE else View.GONE
+
         return binding.root
+    }
+
+    override fun onClick(view: View?) {
+        val user = view?.tag as User
+        onDeleteListener.invoke(user)
     }
 
     private fun createBinding(context: Context?): ItemUserBinding {
@@ -42,10 +53,5 @@ class ListBaseAdapter(
         binding.root.tag = binding
 
         return binding
-    }
-
-    override fun onClick(view: View?) {
-        val user = view?.tag as User
-        onDeleteListener.invoke(user)
     }
 }
