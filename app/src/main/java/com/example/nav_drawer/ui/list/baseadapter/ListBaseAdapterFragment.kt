@@ -1,5 +1,6 @@
 package com.example.nav_drawer.ui.list.baseadapter
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,6 +37,8 @@ class ListBaseAdapterFragment : Fragment() {
 
         initList()
 
+        binding.btnAdd.setOnClickListener { addUser() }
+
         return binding.root
     }
 
@@ -49,8 +52,6 @@ class ListBaseAdapterFragment : Fragment() {
         binding.lvUsers.setOnItemClickListener { _, _, i, _ ->
             infoUser(adapter.getItem(i))
         }
-
-        binding.btnAdd.setOnClickListener { addUser() }
     }
 
     private fun addUser() {
@@ -58,7 +59,7 @@ class ListBaseAdapterFragment : Fragment() {
         val dialog: AlertDialog = AlertDialog.Builder(requireContext())
             .setTitle("Добавить пользователя")
             .setView(dialogAddUser.root)
-            .setPositiveButton("Добавить") {_, _ ->
+            .setPositiveButton("Добавить") { _, _ ->
                 val name = dialogAddUser.inpUserName.text.toString()
                 if (name.isNotBlank()) {
                     createUser(name)
@@ -81,11 +82,30 @@ class ListBaseAdapterFragment : Fragment() {
     }
 
     private fun infoUser(user: User) {
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Пользователь")
+            .setMessage("id ${user.id.toString()},\nимя ${user.name}")
+            .setPositiveButton("OK") { _, _ -> }
+            .create()
+        dialog.show()
 
     }
 
-    private fun deleteUser(it: User) {
+    private fun deleteUser(user: User) {
+        val listener = DialogInterface.OnClickListener { _, i ->
+            if (i == DialogInterface.BUTTON_POSITIVE) {
+                data.remove(user)
+                adapter.notifyDataSetChanged()
+            }
+        }
 
+        val dialog: AlertDialog = AlertDialog.Builder(requireContext())
+            .setTitle("Удаление пользователя")
+            .setMessage("Вы действительно хотите удалить пользователя ${user.name}")
+            .setPositiveButton("Удалить", listener)
+            .setNegativeButton("Отмена", listener)
+            .create()
+        dialog.show()
     }
 
     override fun onDestroy() {
