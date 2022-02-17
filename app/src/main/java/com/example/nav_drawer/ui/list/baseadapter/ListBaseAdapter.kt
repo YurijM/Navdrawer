@@ -26,6 +26,7 @@ class ListBaseAdapter(
     }
 
     // Преобразование элементов данных в элементы списка
+    // (для ListView)
     override fun getView(position: Int, view: View?, parent: ViewGroup?): View {
         val binding: ItemUserBinding = if (view != null) {
             view.tag as ItemUserBinding
@@ -41,6 +42,34 @@ class ListBaseAdapter(
 
         return binding.root
     }
+
+    /*// Преобразование элементов данных в элементы списка
+    // (для Spinner)
+    override fun getView(position: Int, view: View?, parent: ViewGroup?): View {
+        return getDefaultItem(position, view, parent)
+    }
+
+    // При использовании Spinner
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        return getDefaultItem(position, convertView, parent, isDropDownView = true)
+    }
+
+    // При использовании Spinner
+    private fun getDefaultItem(position: Int, view: View?, parent: ViewGroup?, isDropDownView: Boolean = false): View {
+        val binding: ItemUserBinding = if (view != null) {
+            view.tag as ItemUserBinding
+        } else {
+            createBinding(parent?.context)
+        }
+
+        val user: User = getItem(position)
+
+        binding.tvName.text = user.name
+        binding.imgDelete.tag = user
+        binding.imgDelete.visibility = if (isDropDownView) View.VISIBLE else View.GONE
+
+        return binding.root
+    }*/
 
     override fun onClick(view: View?) {
         val user = view?.tag as User
