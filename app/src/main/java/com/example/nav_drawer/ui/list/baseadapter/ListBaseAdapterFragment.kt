@@ -63,7 +63,7 @@ class ListBaseAdapterFragment : Fragment() {
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 val user = data[p2]
-                binding.tvInfo.text = "id " + user.id.toString() + ",\nимя " + user.name
+                binding.tvInfo.text = "id ${user.id.toString()},\nимя ${user.name}"
             }
         }*/
     }
