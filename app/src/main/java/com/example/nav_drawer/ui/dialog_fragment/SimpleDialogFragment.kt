@@ -10,7 +10,7 @@ import com.example.nav_drawer.R
 
 class SimpleDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val listener = DialogInterface.OnClickListener { dialogInterface, i ->
+        val listener = DialogInterface.OnClickListener { _, i ->
             parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf(RESPONSE_KEY to i))
         }
 
