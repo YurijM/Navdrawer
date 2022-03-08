@@ -13,5 +13,19 @@
     <string name="menu_state">Состояния</string>
     <string name="menu_list">Списки</string>
     <string name="menu_dialog_fragment">Dialog Fragment</string>
-    <string name="simple_dialog">Простой диалог</string>
+    <string name="simple_dialog">Dialog Fragment - по умолчанию</string>
+    <string name="single_choice_dialog">Dialog Fragment - единичный выбор</string>
+    <string name="single_choice_confirm_dialog">Dialog Fragment - единичный выбор с подтверждением</string>
+    <string name="multi_choice_dialog">Dialog Fragment - множественный выбор</string>
+    <string name="multi_choice_confirm_dialog">Dialog Fragment - множественный выбор с подтверждением</string>
+    <string name="current_volume">Текущий уровень звука: %1$d%%</string>
+    <string name="current_color">Текущий цвет</string>
+    <string name="volume_description">Уровень звука: %1$d%%</string>
+    <string name="volume_setup">Установка уровеня звука</string>
+
+    <string-array name="colors">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+    </string-array>
 </resources>

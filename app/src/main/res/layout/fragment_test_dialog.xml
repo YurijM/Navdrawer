@@ -1,19 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.dialog_fragment.TestDialogFragment">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnSimpleDialog"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@string/simple_dialog"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context="TestDialogFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnSimpleDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/simple_dialog" />
+
+        <Button
+            android:id="@+id/btnSingleChoiceDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/single_choice_dialog" />
+
+        <Button
+            android:id="@+id/btnSingleChoiceConfirmDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/single_choice_confirm_dialog" />
+
+        <Button
+            android:id="@+id/btnMultiChoiceDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/multi_choice_dialog" />
+
+        <Button
+            android:id="@+id/btnMultiChoiceConfirmDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/multi_choice_confirm_dialog" />
+
+        <TextView
+            android:id="@+id/txtCurrentVolume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="casual"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Текущий уровень звука: 50%" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/currentColorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:fontFamily="casual"
+                android:textSize="16sp"
+                android:text="@string/current_color"/>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@android:color/black"
+                android:padding="2dp">
+
+                <View
+                    android:id="@+id/colorView"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    tools:background="#00ff00"/>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
