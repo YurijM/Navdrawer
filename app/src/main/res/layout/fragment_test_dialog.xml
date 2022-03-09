@@ -82,5 +82,17 @@
                     tools:background="#00ff00"/>
             </FrameLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCustomDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_view" />
+
+        <Button
+            android:id="@+id/btnCustomSingleChoiceDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_single_choice" />
     </LinearLayout>
 </ScrollView>

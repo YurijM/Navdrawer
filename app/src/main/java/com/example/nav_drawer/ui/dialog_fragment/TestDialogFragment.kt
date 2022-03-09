@@ -44,6 +44,9 @@ class TestDialogFragment : Fragment() {
         binding.btnMultiChoiceConfirmDialog.setOnClickListener { showMultiChoiceConfirmDialog() }
         setupMultiChoiceConfirmDialogListener()
 
+        binding.btnCustomDialog.setOnClickListener { showCustomDialog() }
+        setupCustomDialogListener()
+
         updateUI()
 
         return binding.root
@@ -115,7 +118,18 @@ class TestDialogFragment : Fragment() {
     }
 
     private fun showMultiChoiceConfirmDialog() {
-        MultiChoiceConfirmDialogFragment.show(parentFragmentManager, color)
+        MultiChoiceConfirmDialogFragment.show(parentFragmentManager, volume)
+    }
+
+    private fun setupCustomDialogListener() {
+        MultiChoiceConfirmDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
+            volume = it
+            updateUI()
+        }
+    }
+
+    private fun showCustomDialog() {
+        CustomDialogFragment.show(parentFragmentManager, volume)
     }
 
     private fun updateUI() {
