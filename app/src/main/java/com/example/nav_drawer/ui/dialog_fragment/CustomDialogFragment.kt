@@ -23,6 +23,7 @@ class CustomDialogFragment : DialogFragment() {
         return AlertDialog.Builder(requireContext())
             .setCancelable(true)
             .setTitle(R.string.volume_setup)
+            //.setMessage("Тестовое сообщение")
             .setView(dialog.root)
             .setPositiveButton("Установить") { _, _ ->
                 val newVolume = dialog.sbVolume.progress

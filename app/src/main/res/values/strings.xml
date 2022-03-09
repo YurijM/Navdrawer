@@ -21,9 +21,12 @@
     <string name="current_volume">Текущий уровень звука: %1$d%%</string>
     <string name="current_color">Текущий цвет</string>
     <string name="volume_description">Уровень звука: %1$d%%</string>
-    <string name="volume_setup">Установка уровеня звука</string>
+    <string name="volume_setup">Установка уровня звука</string>
     <string name="custom_view">Dialog Fragment - пользовательский шаблон</string>
     <string name="custom_single_choice">Dialog Fragment - единичный выбор (пользовательский)</string>
+    <string name="custom_input_1">Dialog Fragment - input #1</string>
+    <string name="custom_input_2">Dialog Fragment - input #2</string>
+    <string name="input_value">Введите значение</string>
 
     <string-array name="colors">
         <item>Red</item>

@@ -89,10 +89,36 @@
             android:layout_height="wrap_content"
             android:text="@string/custom_view" />
 
+        <TextView
+            android:id="@+id/txtFirstVolume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="casual"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Первый уровень звука: 50%" />
+
+        <TextView
+            android:id="@+id/txtSecondVolume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="casual"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Второй уровень звука: 50%" />
+
         <Button
-            android:id="@+id/btnCustomSingleChoiceDialog"
+            android:id="@+id/btnCustomInput1Dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/custom_single_choice" />
+            android:text="@string/custom_input_1" />
+
+        <Button
+            android:id="@+id/btnCustomInput2Dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_input_2" />
     </LinearLayout>
 </ScrollView>

@@ -17,6 +17,8 @@ class TestDialogFragment : Fragment() {
     private var _binding: FragmentTestDialogBinding? = null
     private val binding get() = _binding!!
     private var volume by notNull<Int>()
+    private var firstVolume by notNull<Int>()
+    private var secondVolume by notNull<Int>()
     private var color by notNull<Int>()
 
     override fun onCreateView(
@@ -27,6 +29,8 @@ class TestDialogFragment : Fragment() {
         _binding = FragmentTestDialogBinding.inflate(inflater, container, false)
 
         volume = savedInstanceState?.getInt(KEY_VOLUME) ?: 50
+        firstVolume = savedInstanceState?.getInt(KEY_VOLUME_FIRST) ?: 50
+        secondVolume = savedInstanceState?.getInt(KEY_VOLUME_SECOND) ?: 50
         color = savedInstanceState?.getInt(KEY_COLOR) ?: Color.RED
 
         binding.btnSimpleDialog.setOnClickListener { showSimpleDialog() }
@@ -47,6 +51,14 @@ class TestDialogFragment : Fragment() {
         binding.btnCustomDialog.setOnClickListener { showCustomDialog() }
         setupCustomDialogListener()
 
+        binding.btnCustomInput1Dialog.setOnClickListener {
+            showCustomInputDialog(REQUEST_KEY_FIRST, firstVolume)
+        }
+        binding.btnCustomInput2Dialog.setOnClickListener {
+            showCustomInputDialog(REQUEST_KEY_SECOND, secondVolume)
+        }
+        setupCustomInputDialogListener()
+
         updateUI()
 
         return binding.root
@@ -55,6 +67,8 @@ class TestDialogFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_VOLUME, volume)
+        outState.putInt(KEY_VOLUME_FIRST, firstVolume)
+        outState.putInt(KEY_VOLUME_SECOND, secondVolume)
         outState.putInt(KEY_COLOR, color)
     }
 
@@ -122,7 +136,7 @@ class TestDialogFragment : Fragment() {
     }
 
     private fun setupCustomDialogListener() {
-        MultiChoiceConfirmDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
+        CustomDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
             volume = it
             updateUI()
         }
@@ -132,13 +146,38 @@ class TestDialogFragment : Fragment() {
         CustomDialogFragment.show(parentFragmentManager, volume)
     }
 
+    private fun setupCustomInputDialogListener() {
+        val listener: CustomInputDialogListener = { requestKey, volume ->
+            when (requestKey) {
+                REQUEST_KEY_FIRST -> this.firstVolume = volume
+                REQUEST_KEY_SECOND -> this.secondVolume = volume
+            }
+            updateUI()
+        }
+        CustomInputDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner, REQUEST_KEY_FIRST, listener)
+        CustomInputDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner, REQUEST_KEY_SECOND, listener)
+    }
+
+    private fun showCustomInputDialog(requestKey: String, volume: Int) {
+        CustomInputDialogFragment.show(parentFragmentManager, volume, requestKey)
+    }
+
     private fun updateUI() {
         binding.txtCurrentVolume.text = getString(R.string.current_volume, volume)
+        binding.txtFirstVolume.text = getString(R.string.current_volume, firstVolume)
+        binding.txtSecondVolume.text = getString(R.string.current_volume, secondVolume)
         binding.colorView.setBackgroundColor(color)
     }
 
     companion object {
         @JvmStatic private val KEY_VOLUME = "KEY_VOLUME"
         @JvmStatic private val KEY_COLOR = "KEY_COLOR"
+
+        @JvmStatic private val KEY_VOLUME_FIRST = "KEY_VOLUME_FIRST"
+        @JvmStatic private val KEY_VOLUME_SECOND = "KEY_VOLUME_SECOND"
+
+        @JvmStatic private val REQUEST_KEY_FIRST = "REQUEST_KEY_FIRST"
+        @JvmStatic private val REQUEST_KEY_SECOND = "REQUEST_KEY_SECOND"
+
     }
 }
