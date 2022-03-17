@@ -5,4 +5,15 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="photo_width">48dp</dimen>
+    <dimen name="photo_height">48dp</dimen>
+    <dimen name="margin_middle">8dp</dimen>
+    <dimen name="margin_max">16dp</dimen>
+    <dimen name="padding_min">4dp</dimen>
+    <dimen name="padding_middle">8dp</dimen>
+    <dimen name="more_size">32dp</dimen>
+    <dimen name="size_text_max">20sp</dimen>
+    <dimen name="size_text">16sp</dimen>
+    <dimen name="size_text_middle">14sp</dimen>
+    <dimen name="size_text_min">12sp</dimen>
 </resources>
