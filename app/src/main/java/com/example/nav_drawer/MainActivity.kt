@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.nav_drawer.databinding.ActivityMainBinding
+import com.example.nav_drawer.ui.recyclerview.model.UsersService
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -46,7 +47,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_photo,
                 R.id.nav_state,
                 R.id.nav_list,
-                R.id.nav_dialog
+                R.id.nav_dialog,
+                R.id.nav_recyclerview
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

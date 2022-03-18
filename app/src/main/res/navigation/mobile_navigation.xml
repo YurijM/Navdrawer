@@ -52,4 +52,10 @@
         android:name="com.example.nav_drawer.ui.dialog_fragment.TestDialogFragment"
         android:label="@string/menu_dialog_fragment"
         tools:layout="@layout/fragment_test_dialog" />
+
+    <fragment
+        android:id="@+id/nav_recyclerview"
+        android:name="com.example.nav_drawer.ui.recyclerview.RecyclerViewFragment"
+        android:label="@string/menu_recyclerview"
+        tools:layout="@layout/fragment_recycler_view" />
 </navigation>

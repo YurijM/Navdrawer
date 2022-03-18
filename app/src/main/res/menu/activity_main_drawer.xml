@@ -24,5 +24,9 @@
             android:id="@+id/nav_dialog"
             android:icon="@drawable/ic_menu_dialog"
             android:title="@string/menu_dialog_fragment" />
+        <item
+            android:id="@+id/nav_recyclerview"
+            android:icon="@drawable/ic_menu_dialog"
+            android:title="@string/menu_recyclerview" />
     </group>
 </menu>
