@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.nav_drawer.App
 import com.example.nav_drawer.MainActivity
 import com.example.nav_drawer.databinding.FragmentRecyclerViewBinding
 import com.example.nav_drawer.ui.recyclerview.model.User
@@ -21,9 +22,9 @@ class RecyclerViewFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: RecyclerViewAdapter
 
-    /*private val usersService: UsersService
-        get() = (applicationContext as App).usersService*/
-    private val usersService = UsersService()
+    private val usersService: UsersService
+        get() = (requireContext().applicationContext as App).usersService
+    //private val usersService = UsersService()
 
     private val usersListener: UsersListener = {
         adapter.users = it
